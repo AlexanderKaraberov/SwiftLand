@@ -10,6 +10,8 @@
 		11F099771B8DF7DC00E109DD /* SwiftLand.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F099761B8DF7DC00E109DD /* SwiftLand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		11F0997D1B8DF7DC00E109DD /* SwiftLand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F099711B8DF7DC00E109DD /* SwiftLand.framework */; };
 		11F099841B8DF7DC00E109DD /* SwiftLandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F099831B8DF7DC00E109DD /* SwiftLandTests.swift */; };
+		11F0998F1B8DF87200E109DD /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F0998E1B8DF87200E109DD /* ArrayExtensions.swift */; };
+		11F099911B8DF98100E109DD /* TupleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F099901B8DF98100E109DD /* TupleExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		11F0997C1B8DF7DC00E109DD /* SwiftLandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftLandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F099821B8DF7DC00E109DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F099831B8DF7DC00E109DD /* SwiftLandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftLandTests.swift; sourceTree = "<group>"; };
+		11F0998E1B8DF87200E109DD /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		11F099901B8DF98100E109DD /* TupleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TupleExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		11F099731B8DF7DC00E109DD /* SwiftLand */ = {
 			isa = PBXGroup;
 			children = (
+				11F0998D1B8DF86200E109DD /* Base */,
 				11F099761B8DF7DC00E109DD /* SwiftLand.h */,
 				11F099741B8DF7DC00E109DD /* Supporting Files */,
 			);
@@ -100,6 +105,15 @@
 				11F099821B8DF7DC00E109DD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		11F0998D1B8DF86200E109DD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				11F0998E1B8DF87200E109DD /* ArrayExtensions.swift */,
+				11F099901B8DF98100E109DD /* TupleExtensions.swift */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F099911B8DF98100E109DD /* TupleExtensions.swift in Sources */,
+				11F0998F1B8DF87200E109DD /* ArrayExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +339,7 @@
 		11F099881B8DF7DC00E109DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +349,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		11F099891B8DF7DC00E109DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
