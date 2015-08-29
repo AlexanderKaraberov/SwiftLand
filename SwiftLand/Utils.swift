@@ -19,8 +19,8 @@ public func isValidEmail(email: String) -> Bool {
     return emailTestPredicate.evaluateWithObject(email)
 }
 
-//Method used as analogue of handy macro NSDictionaryOfVariableBindings from Objective-C
-//but instead of view names use ordinal numeration: view1, view2... viewN.
+//This function is an analogue of the handy macro NSDictionaryOfVariableBindings from Objective-C
+//but instead of view names you should use ordinal numeration: view1, view2... viewN.
 public func dictionaryOfVariableBindings(variables: UIView...) -> Dictionary<String, UIView> {
     
     var dictionary = Dictionary<String, UIView>()
