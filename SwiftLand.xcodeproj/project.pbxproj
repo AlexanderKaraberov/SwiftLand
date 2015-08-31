@@ -17,8 +17,6 @@
 		11A4EFB81B90D4AB002A8629 /* OptionalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4EFB71B90D4AB002A8629 /* OptionalExtensions.swift */; };
 		11A4EFC51B90D7A2002A8629 /* Prelude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4EFC41B90D7A2002A8629 /* Prelude.swift */; };
 		11A4EFDC1B90E14B002A8629 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4EFDB1B90E14B002A8629 /* DictionaryExtensions.swift */; };
-		11A4EFE21B90E59A002A8629 /* Nothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4EFE11B90E59A002A8629 /* Nothing.swift */; };
-		11A4EFE41B90E608002A8629 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A4EFE31B90E608002A8629 /* Unit.swift */; };
 		11F099771B8DF7DC00E109DD /* SwiftLand.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F099761B8DF7DC00E109DD /* SwiftLand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		11F0997D1B8DF7DC00E109DD /* SwiftLand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F099711B8DF7DC00E109DD /* SwiftLand.framework */; };
 		11F099841B8DF7DC00E109DD /* SwiftLandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F099831B8DF7DC00E109DD /* SwiftLandTests.swift */; };
@@ -47,8 +45,6 @@
 		11A4EFB71B90D4AB002A8629 /* OptionalExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalExtensions.swift; sourceTree = "<group>"; };
 		11A4EFC41B90D7A2002A8629 /* Prelude.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Prelude.swift; sourceTree = "<group>"; };
 		11A4EFDB1B90E14B002A8629 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
-		11A4EFE11B90E59A002A8629 /* Nothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
-		11A4EFE31B90E608002A8629 /* Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		11F099711B8DF7DC00E109DD /* SwiftLand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftLand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11F099751B8DF7DC00E109DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11F099761B8DF7DC00E109DD /* SwiftLand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftLand.h; sourceTree = "<group>"; };
@@ -143,8 +139,6 @@
 				11A4EFB71B90D4AB002A8629 /* OptionalExtensions.swift */,
 				11A4EFC41B90D7A2002A8629 /* Prelude.swift */,
 				11A4EFDB1B90E14B002A8629 /* DictionaryExtensions.swift */,
-				11A4EFE11B90E59A002A8629 /* Nothing.swift */,
-				11A4EFE31B90E608002A8629 /* Unit.swift */,
 				119E23CC1B94871B00F393A5 /* Folds.swift */,
 				119E23CE1B9488AB00F393A5 /* Member.swift */,
 				119E23D41B94893800F393A5 /* Scans.swift */,
@@ -267,12 +261,10 @@
 				119E23D51B94893800F393A5 /* Scans.swift in Sources */,
 				11F0998F1B8DF87200E109DD /* ArrayExtensions.swift in Sources */,
 				1198F4DA1B8F05850068E672 /* Utils.swift in Sources */,
-				11A4EFE41B90E608002A8629 /* Unit.swift in Sources */,
 				11A4EFAE1B90D316002A8629 /* Operators.swift in Sources */,
 				11A4EFC51B90D7A2002A8629 /* Prelude.swift in Sources */,
 				11A4EFDC1B90E14B002A8629 /* DictionaryExtensions.swift in Sources */,
 				119E23CD1B94871B00F393A5 /* Folds.swift in Sources */,
-				11A4EFE21B90E59A002A8629 /* Nothing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
