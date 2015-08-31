@@ -57,3 +57,24 @@ public func flip<T, U, V, W>(f: (T, U, V) -> W) -> (V, U, T) -> W {
 public func flip<T, U, V, W, X>(f: (T, U, V, W) -> X) -> (W, V, U, T) -> X {
     return { f($3, $2, $1, $0) }
 }
+
+/// On | Applies the function on its right to both its arguments, then applies the function on its
+/// left to the result of both prior applications.
+///
+///    (+) |*| f = { x in { y in f(x) + f(y) } }
+public func on<A, B, C>(o : B -> B -> C) -> (A -> B) -> A -> A -> C {
+    return { f in { x in { y in o(f(x))(f(y)) } } }
+}
+
+/// On | Applies the function on its right to both its arguments, then applies the function on its
+/// left to the result of both prior applications.
+///
+///    (+) |*| f = { x, y in f(x) + f(y) }
+public func on<A, B, C>(o : (B, B) -> C) -> (A -> B) -> A -> A -> C {
+    return { f in { x in { y in o(f(x), f(y)) } } }
+}
+
+/// Applies a function to an argument until a given predicate returns true.
+public func until<A>(p : A -> Bool) -> (A -> A) -> A -> A {
+    return { f in { x in p(x) ? x : until(p)(f)(f(x)) } }
+}

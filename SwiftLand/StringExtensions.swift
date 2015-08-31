@@ -180,19 +180,3 @@ extension String {
     }
     
 }
-
-extension String : Monoid {
-    typealias M = String
-    
-    public static var mzero : String {
-        return ""
-    }
-    
-    public func op(other : String) -> String {
-        return self + other
-    }
-}
-
-public func <>(l : String, r : String) -> String {
-    return l + r
-}
