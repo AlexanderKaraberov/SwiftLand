@@ -9,5 +9,5 @@
 import Foundation
 
 
-//Utin type
+//Unit type
 typealias Unit = Void

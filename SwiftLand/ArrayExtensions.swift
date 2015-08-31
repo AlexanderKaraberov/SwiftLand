@@ -40,6 +40,11 @@ public func head<A>(l : [A]) -> Optional<A> {
     }
 }
 
+public func <| <T>(lhs : T, var rhs : [T]) -> [T] {
+    rhs.insert(lhs, atIndex: 0)
+    return rhs
+}
+
 /// Returns the tail of the list, or None if the list is empty.
 public func tail<A>(l : [A]) -> Optional<[A]> {
     switch match(l) {
@@ -252,16 +257,6 @@ public func indexArray<A>(xs : [A], i : Int) -> A? {
     }
 }
 
-/// Returns the conjunction of a list of Booleans.
-public func and(list : [Bool]) -> Bool {
-    return list.reduce(true) {$0 && $1}
-}
-
-/// Returns the dijunction of a list of Booleans.
-public func or(list : [Bool]) -> Bool {
-    return list.reduce(false) {$0 || $1}
-}
-
 /// Maps a predicate over a list.  For the result to be true, the predicate must be satisfied at
 /// least once by an element of the list.
 public func any<A>(list : [A], f : (A -> Bool)) -> Bool {
@@ -274,12 +269,6 @@ public func all<A>(list : [A], f : (A -> Bool)) -> Bool {
     return and(list.map(f))
 }
 
-/// Concatenate a list of lists.
-public func concat<A>(list : [[A]]) -> [A] {
-    return list.reduce([]) { (start, l) -> [A] in
-        return concat(start)(l)
-    }
-}
 
 ///Map a function over a list and concatenate the results.
 public func concatMap<A,B>(list: [A], f: A -> [B]) -> [B] {
@@ -374,22 +363,3 @@ public func takeWhile<A>(list : [A], p : A -> Bool) -> [A] {
     }
 }
 
-/// Fmap | Returns a new list of elements obtained by applying the given function to the entirety of
-/// the given list of elements in order.
-public func <^> <A, B>(f : A -> B, xs : [A]) -> [B] {
-    return xs.map(f)
-}
-
-/// Ap | Returns the result of applying each element of the given array of functions to the entirety
-/// of the list of elements, repeating until the list of functions has been exhausted.
-///
-/// Promotes function application to arrays of functions applied to arrays of elements.
-public func <*> <A, B>(fs : [(A -> B)], xs : [A]) -> [B] {
-    return fs.flatMap({ xs.map($0) })
-}
-
-/// Bind | Returns the result of mapping the given function over the given array of elements and
-/// concatenating the result.
-public func >>- <A, B>(xs : [A], f : A -> [B]) -> [B] {
-    return xs.flatMap(f)
-}
