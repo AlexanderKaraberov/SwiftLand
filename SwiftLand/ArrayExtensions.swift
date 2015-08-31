@@ -160,6 +160,30 @@ public func zipWith3<A,B,C,D>(fst:[A], scd:[B], thrd:[C], f:((A, B, C) -> D)) ->
     return newArr
 }
 
+
+/// Unzips an array of tuples into a tuple of arrays.
+public func unzip<A, B>(l : [(A, B)]) -> ([A], [B]) {
+    switch match(l) {
+    case .Nil:
+        return ([], [])
+    case .Cons(let (a, b), let tl):
+        let (t1, t2) : ([A], [B]) = unzip(tl)
+        return (a <| t1, b <| t2)
+    }
+}
+
+/// Unzips an array of triples into a triple of arrays.
+public func unzip3<A, B, C>(l : [(A, B, C)]) -> ([A], [B], [C]) {
+    switch match(l) {
+    case .Nil:
+        return ([], [], [])
+    case .Cons(let (a, b, c), let tl):
+        let (t1, t2, t3) : ([A], [B], [C]) = unzip3(tl)
+        return (a <| t1, b <| t2, c <| t3)
+    }
+}
+
+
 /// Takes a binary function, an initial value, and a list and scans the function across each element
 /// of a list accumulating the results of successive function calls applied to reduced values from
 /// the left to the right.
