@@ -11,7 +11,7 @@ import Foundation
 
 extension UIImage {
     
-    //Crops the largest square from the image center
+    /// Crops the largest square from the image center
     func cropSquaredCenter() -> UIImage? {
         
         let originalWidth = self.size.width
@@ -34,5 +34,15 @@ extension UIImage {
         
         let imageRef: CGImageRef! = CGImageCreateWithImageInRect(self.CGImage, cropSquare)
         return UIImage(CGImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
+    }
+    
+    
+    /// Encode this image as Base64 string
+    func encodeToBase64String() -> String {
+        
+        let compressionQuality: CGFloat = 1.0
+        let imageData: NSData = UIImageJPEGRepresentation(self, compressionQuality)
+        return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        
     }
 }
