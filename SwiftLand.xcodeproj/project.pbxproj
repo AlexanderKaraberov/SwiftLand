@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11404D171B987B1A00F39E2D /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11404D161B987B1A00F39E2D /* UIColorExtensions.swift */; };
 		1198F4D81B8F04890068E672 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198F4D71B8F04890068E672 /* UIImageExtensions.swift */; };
 		1198F4DA1B8F05850068E672 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198F4D91B8F05850068E672 /* Utils.swift */; };
 		1198F4DC1B8F13620068E672 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198F4DB1B8F13620068E672 /* StringExtensions.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11404D161B987B1A00F39E2D /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		1198F4D71B8F04890068E672 /* UIImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		1198F4D91B8F05850068E672 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1198F4DB1B8F13620068E672 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				119E23CE1B9488AB00F393A5 /* Member.swift */,
 				119E23D41B94893800F393A5 /* Scans.swift */,
 				11D8B9671B94E69700C54B30 /* DateExtensions.swift */,
+				11404D161B987B1A00F39E2D /* UIColorExtensions.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				119E23CF1B9488AB00F393A5 /* Member.swift in Sources */,
+				11404D171B987B1A00F39E2D /* UIColorExtensions.swift in Sources */,
 				1198F4D81B8F04890068E672 /* UIImageExtensions.swift in Sources */,
 				11A4EFB81B90D4AB002A8629 /* OptionalExtensions.swift in Sources */,
 				11F099911B8DF98100E109DD /* TupleExtensions.swift in Sources */,
