@@ -89,22 +89,12 @@ public func cons<T>(lhs : T, var rhs : [T]) -> [T] {
 
 /// Safely indexes into an array by converting out of bounds errors to nils.
 public func safeIndex<T>(array : Array<T>)(i : Int) -> T? {
-    return indexArray(array, i)
+    return indexArray(array, i: i)
 }
 
 /// Returns the result of concatenating the values in the left and right arrays together.
 public func concat<T>(lhs: [T])(_ rhs : [T]) -> [T] {
     return lhs + rhs
-}
-
-/// Maps a function over an array that takes pairs of (index, element) to a different element.
-public func mapWithIndex<T, U>(array : Array<T>)(f : (Int, T) -> U) -> [U] {
-    var res = [U]()
-    res.reserveCapacity(array.count)
-    for i in 0 ..< array.count {
-        res.append(f(i, array[i]))
-    }
-    return res
 }
 
 /// Folds a reducing function over an array from right to left.
@@ -116,10 +106,10 @@ public func foldRight<T, U>(array : Array<T>)(z : U, f : (T, U) -> U) -> U {
     return res
 }
 
-//zip takes two lists and returns a list of corresponding pairs. If one input list is short,
+///zip takes two lists and returns a list of corresponding pairs. If one input list is short,
 //excess elements of the longer list are discarded.
 public func zip<A,B>(fst:[A], scd:[B]) -> Array<(A,B)> {
-    var size = min(fst.count, scd.count)
+    let size = min(fst.count, scd.count)
     var newArr = Array<(A,B)>()
     for x in 0..<size {
         newArr += [(fst[x], scd[x])]
@@ -127,9 +117,9 @@ public func zip<A,B>(fst:[A], scd:[B]) -> Array<(A,B)> {
     return newArr
 }
 
-//zip3 takes three lists and returns a list of triples, analogous to zip.
+///zip3 takes three lists and returns a list of triples, analogous to zip.
 public func zip3<A,B,C>(fst:[A], scd:[B], thrd:[C]) -> Array<(A,B,C)> {
-    var size = min(fst.count, scd.count, thrd.count)
+    let size = min(fst.count, scd.count, thrd.count)
     var newArr = Array<(A,B,C)>()
     for x in 0..<size {
         newArr += [(fst[x], scd[x], thrd[x])]
@@ -137,11 +127,11 @@ public func zip3<A,B,C>(fst:[A], scd:[B], thrd:[C]) -> Array<(A,B,C)> {
     return newArr
 }
 
-//zipWith generalises zip by zipping with the function given as the first argument,
-//instead of a tupling function.
-//For example, zipWith (+) is applied to two lists to produce the list of corresponding sums.
+///zipWith generalises zip by zipping with the function given as the first argument,
+///instead of a tupling function.
+///For example, zipWith (+) is applied to two lists to produce the list of corresponding sums.
 public func zipWith<A,B,C>(fst:[A], scd:[B], f:((A, B) -> C)) -> Array<C> {
-    var size = min(fst.count, scd.count)
+    let size = min(fst.count, scd.count)
     var newArr = [C]()
     for x in 0..<size {
         newArr += [f(fst[x], scd[x])]
@@ -149,10 +139,10 @@ public func zipWith<A,B,C>(fst:[A], scd:[B], f:((A, B) -> C)) -> Array<C> {
     return newArr
 }
 
-//The zipWith3 function takes a function which combines three elements, as well as three lists
-//and returns a list of their point-wise combination, analogous to zipWith.
+///The zipWith3 function takes a function which combines three elements, as well as three lists
+///and returns a list of their point-wise combination, analogous to zipWith.
 public func zipWith3<A,B,C,D>(fst:[A], scd:[B], thrd:[C], f:((A, B, C) -> D)) -> Array<D> {
-    var size = min(fst.count, scd.count, thrd.count)
+    let size = min(fst.count, scd.count, thrd.count)
     var newArr = [D]()
     for x in 0..<size {
         newArr += [f(fst[x], scd[x], thrd[x])]
@@ -245,7 +235,7 @@ public func intersperse<T>(item : T, list : [T]) -> [T] {
         return list
     } else {
         var array = Array([list[0]])
-        array += prependAll(item, tail(list)!)
+        array += prependAll(item, array: tail(list)!)
         return Array(array)
     }
 }
@@ -304,7 +294,7 @@ public func concatMap<A,B>(list: [A], f: A -> [B]) -> [B] {
 
 /// Inserts a list in between the elements of a 2-dimensional array and concatenates the result.
 public func intercalate<A>(list : [A], nested : [[A]]) -> [A] {
-    return concat(intersperse(list, nested))
+    return concat(intersperse(list, list: nested))
 }
 
 
@@ -322,8 +312,8 @@ public func span<A>(list : [A], p : (A -> Bool)) -> ([A], [A]) {
         return ([], [])
     case .Cons(let x, let xs):
         if p(x) {
-            let (ys, zs) = span(xs, p)
-            return (cons(x, ys), zs)
+            let (ys, zs) = span(xs, p: p)
+            return (cons(x, rhs: ys), zs)
         }
         return ([], list)
     }
@@ -336,9 +326,9 @@ public func groupBy<A>(list : [A], p : A -> A -> Bool) -> [[A]] {
     case .Nil:
         return []
     case .Cons(let x, let xs):
-        let (ys, zs) = span(xs, p(x))
-        let l = cons(x, ys)
-        return cons(l, groupBy(zs, p))
+        let (ys, zs) = span(xs, p: p(x))
+        let l = cons(x, rhs: ys)
+        return cons(l, rhs: groupBy(zs, p: p))
     }
 }
 
@@ -348,7 +338,7 @@ public func groupBy<A>(list : [A], p : A -> A -> Bool) -> [[A]] {
 ///
 ///     group([0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 7]) == [[0], [1, 1], [2], [3, 3], [4], [5], [6], [7, 7]]
 public func group<A : Equatable>(list : [A]) -> [[A]] {
-    return groupBy(list, { a in { b in a == b } })
+    return groupBy(list, p: { a in { b in a == b } })
 }
 
 /// Returns a list of the first elements that do not satisfy a predicate until that predicate
@@ -363,7 +353,7 @@ public func dropWhile<A>(list : [A], p : A -> Bool) -> [A] {
         return []
     case .Cons(let x, let xs):
         if p(x) {
-            return dropWhile(xs, p)
+            return dropWhile(xs, p: p)
         }
         return list
     }
@@ -381,7 +371,7 @@ public func takeWhile<A>(list : [A], p : A -> Bool) -> [A] {
         return []
     case .Cons(let x, let xs):
         if p(x) {
-            return cons(x, takeWhile(xs, p))
+            return cons(x, rhs: takeWhile(xs, p: p))
         }
         return []
     }
