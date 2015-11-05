@@ -37,6 +37,16 @@ extension RangeReplaceableCollectionType where Self.Generator.Element: Hashable 
     }
 }
 
+extension Array {
+    
+    ///Maps a function over an array that takes pairs of (index, element) to a different element.
+    ///See here: http://stackoverflow.com/questions/28012205/map-or-reduce-with-index-in-swift/33397337#33397337
+    ///Also here: http://stackoverflow.com/questions/16191824/index-of-element-in-list-in-haskell
+    public func mapWithIndex<T> (f: (Int, Element) -> T) -> [T] {
+        return zip((self.startIndex ..< self.endIndex), self).map(f)
+    }
+}
+
 ///Alternative global uniq function
 func uniq<S : SequenceType, T : Hashable where S.Generator.Element == T>(source: S) -> [T] {
     
