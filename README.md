@@ -6,7 +6,7 @@ This library will selectively include some code from beautiful https://github.co
 * Catamorphisms (folds). Because Swift currently has only fold left (`reduce`).
 * Anamorphism (`unfoldr`)
 * `mapWithIndex`
-* Combinators (`flip`,`const`, `fix` or Ycombinator)
+* Combinators (`flip`,`const`, `fix` or Y combinator)
 * Utils for dates, images, colors.
 * Scans: `A "scan" is like a cross between a map and a fold. Folding a list accumulates a single return value, whereas mapping puts each item through a function returning a separate result for each item. A scan does both: it accumulates a value like a fold, but instead of returning only a final value it returns a list of all the intermediate values.`
 * String extensions and higher order functions
