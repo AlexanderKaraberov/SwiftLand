@@ -78,12 +78,12 @@ extension String {
     /// Destructures a string.  If the string is empty the result is .Nil, otherwise the result is
     /// .Cons(head, tail).
     public func match() -> StringMatcher {
-        if count(self) == 0 {
+        if self.characters.count == 0 {
             return .Nil
-        } else if count(self) == 1 {
+        } else if self.characters.count == 1 {
             return .Cons(self[self.startIndex], "")
         }
-        return .Cons(self[self.startIndex], self[advance(self.startIndex, 1)..<self.endIndex])
+        return .Cons(self[self.startIndex], self[self.startIndex.advancedBy(1)..<self.endIndex])
     }
     
     /// Returns a string containing the characters of the receiver in reverse order.
@@ -146,37 +146,6 @@ extension String {
     /// Takes two lists and returns true if the first string is a suffix of the second string.
     public func isSuffixOf(r : String) -> Bool {
         return self.reverse().isPrefixOf(r.reverse())
-    }
-    
-    /// Takes two lists and returns true if the first string is contained entirely anywhere in the
-    /// second string.
-    public func isInfixOf(r : String) -> Bool {
-        func tails(l : String) -> [String] {
-            return l.reduce({ x, y in
-                return [String.cons(y, tail: head(x)!)] + x
-                }, initial: [""])
-        }
-        
-        return any(tails(r), { self.isPrefixOf($0) })
-    }
-    
-    /// Takes two strings and drops items in the first from the second.  If the first string is not a
-    /// prefix of the second string this function returns Nothing.
-    public func stripPrefix(r : String) -> Optional<String> {
-        switch (self.match(), r.match()) {
-        case (.Nil, _):
-            return .Some(r)
-        case (.Cons(let x, let xs), .Cons(let y, let ys)) where x == y:
-            return xs.stripPrefix(xs)
-        default:
-            return .None
-        }
-    }
-    
-    /// Takes two strings and drops items in the first from the end of the second.  If the first
-    /// string is not a suffix of the second string this function returns nothing.
-    public func stripSuffix(r : String) -> Optional<String> {
-        return self.reverse().stripPrefix(r.reverse()).map({ $0.reverse() })
     }
     
 }

@@ -30,16 +30,6 @@ public func match<T>(l : [T]) -> ArrayMatcher<T> {
     return .Cons(hd, tl)
 }
 
-/// Returns the first element in the list, or None if the list is empty.
-public func head<A>(l : [A]) -> Optional<A> {
-    switch match(l) {
-    case .Nil:
-        return .None
-    case .Cons(let x, _):
-        return .Some(x)
-    }
-}
-
 public func <| <T>(lhs : T, var rhs : [T]) -> [T] {
     rhs.insert(lhs, atIndex: 0)
     return rhs
@@ -95,26 +85,6 @@ public func safeIndex<T>(array : Array<T>)(i : Int) -> T? {
 /// Returns the result of concatenating the values in the left and right arrays together.
 public func concat<T>(lhs: [T])(_ rhs : [T]) -> [T] {
     return lhs + rhs
-}
-
-/// Folds a reducing function over an array from right to left.
-public func foldRight<T, U>(array : Array<T>)(z : U, f : (T, U) -> U) -> U {
-    var res = z
-    for x in array {
-        res = f(x, res)
-    }
-    return res
-}
-
-///zip takes two lists and returns a list of corresponding pairs. If one input list is short,
-//excess elements of the longer list are discarded.
-public func zip<A,B>(fst:[A], scd:[B]) -> Array<(A,B)> {
-    let size = min(fst.count, scd.count)
-    var newArr = Array<(A,B)>()
-    for x in 0..<size {
-        newArr += [(fst[x], scd[x])]
-    }
-    return newArr
 }
 
 ///zip3 takes three lists and returns a list of triples, analogous to zip.
@@ -241,26 +211,6 @@ public func intersperse<T>(item : T, list : [T]) -> [T] {
 }
 
 
-/// Maps a function over a list of Optionals, applying the function of the optional is Some,
-/// discarding the value if it is None and returning a list of non Optional values
-public func mapFlatten<A>(xs : [A?]) -> [A] {
-    var w = [A]()
-    w.reserveCapacity(foldRight(xs)(z: 0) { c, n in
-        if c != nil {
-            return n + 1
-        } else {
-            return n
-        }
-        })
-    for c in xs {
-        if let x = c {
-            w.append(x)
-        } else {
-            // nothing
-        }
-    }
-    return w
-}
 
 /// Safely indexes into an array by converting out of bounds errors to nils.
 public func indexArray<A>(xs : [A], i : Int) -> A? {

@@ -23,13 +23,13 @@ extension NSDate
         self.init(timeInterval:0, sinceDate:date)
     }
     
+    ///Returns String representation of the given date, accordingly to passed date format
+    public func stringifyDateWithFormat(format: String) -> String {
+        
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = format
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        return dateStringFormatter.stringFromDate(self)
+    }
 }
 
-///Returns String representation of the given date, accordingly to passed date format
-public func stringifyDate(date: NSDate, format: String) -> String {
-    
-    let dateStringFormatter = NSDateFormatter()
-    dateStringFormatter.dateFormat = format
-    dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-    return dateStringFormatter.stringFromDate(date)
-}

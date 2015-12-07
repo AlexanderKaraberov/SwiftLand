@@ -33,13 +33,17 @@ public extension UIColor {
         var alpha: CGFloat = 1.0
         
         if hexValue.hasPrefix("#") {
-            let index   = advance(hexValue.startIndex, 1)
+            let index   = hexValue.startIndex.advancedBy(1)
             let hex     = hexValue.substringFromIndex(index)
             let scanner = NSScanner(string: hex)
             var hexValue: CUnsignedLongLong = 0
             if scanner.scanHexLongLong(&hexValue) {
                 
-                let hexNotationType: HexNotationType = HexNotationType(rawValue: count(hex))!
+                guard let hexNotationType = HexNotationType(rawValue: hex.characters.count) else {
+                    
+                    print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8")
+                    return UIColor (red: red, green: green, blue: blue, alpha: alpha)
+                }
                 
                 switch (hexNotationType) {
                     
@@ -65,15 +69,15 @@ public extension UIColor {
                     blue  = CGFloat((hexValue & 0x0000FF00) >> 8)  / 255.0
                     alpha = CGFloat(hexValue & 0x000000FF)         / 255.0
                     
-                default:
-                    print("Invalid RGB string, number of characters after '#' should be either 3, 4, 6 or 8")
                 }
             } else {
-                println("Scan hex error")
+                print("Scan hex error")
+                
             }
-        } else {
+        }
+        else {
             print("Invalid RGB string, missing '#' as prefix")
         }
-        return UIColor (red: red, green: green, blue: blue, alpha: 1.0)
+        return UIColor (red: red, green: green, blue: blue, alpha: alpha)
     }
 }

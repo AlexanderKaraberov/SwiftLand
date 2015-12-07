@@ -41,8 +41,8 @@ extension UIImage {
     func encodeToBase64String() -> String {
         
         let compressionQuality: CGFloat = 1.0
-        let imageData: NSData = UIImageJPEGRepresentation(self, compressionQuality)
-        return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-        
+        return UIImageJPEGRepresentation(self, compressionQuality).map { (data) -> String in
+            return data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        } ?? ""
     }
 }
