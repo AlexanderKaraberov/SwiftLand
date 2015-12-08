@@ -7,7 +7,7 @@ This library will selectively include some code from beautiful https://github.co
 * Anamorphism (`unfoldr`)
 * `mapWithIndex`
 * General purpose list functions: `intercalate`, `null`, `tail`/`head`/`drop`, cons lists, `concat`, `intersperse`, `span`, `concatMap`, `groupBy`, `any`, `all`, `splitAt`, `find`.
-* Zipping lists: `zip`, `unzip`.
+* Zipping/unzipping lists: `zip3`, `zipWith`, `unzip`. (Swift standard library already has a usual [zip](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_StandardLibrary_Functions/index.html#//apple_ref/swift/func/s:FSs3zipu0_Rq_Ss12SequenceTypeq0_S__FTq_q0__GVSs12Zip2Sequenceq_q0__) function)
 * Combinators (`flip`,`const`, `fix` or Y combinator)
 * Utils for dates, images, colors.
 * Scans: `A "scan" is like a cross between a map and a fold. Folding a list accumulates a single return value, whereas mapping puts each item through a function returning a separate result for each item. A scan does both: it accumulates a value like a fold, but instead of returning only a final value it returns a list of all the intermediate values.`
