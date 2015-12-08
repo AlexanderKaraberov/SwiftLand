@@ -35,6 +35,16 @@ public func <| <T>(lhs : T, var rhs : [T]) -> [T] {
     return rhs
 }
 
+/// Checks if a list is empty. If it is, it returns true, otherwise it returns false
+public func null<A>(l: [A]) -> Bool {
+    switch match(l) {
+    case .Nil:
+        return true
+    case .Cons(_, _):
+        return false
+    }
+}
+
 /// Returns the tail of the list, or None if the list is empty.
 public func tail<A>(l : [A]) -> Optional<[A]> {
     switch match(l) {
