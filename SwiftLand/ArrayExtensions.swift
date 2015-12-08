@@ -8,8 +8,6 @@
 
 import Foundation
 
-/// MARK: Array extensions
-
 public enum ArrayMatcher<A> {
     case Nil
     case Cons(A, [A])
@@ -153,26 +151,6 @@ public func unzip3<A, B, C>(l : [(A, B, C)]) -> ([A], [B], [C]) {
     }
 }
 
-
-/// Takes a binary function, an initial value, and a list and scans the function across each element
-/// of a list accumulating the results of successive function calls applied to reduced values from
-/// the left to the right.
-///
-///     scanl(z, [x1, x2, ...], f) == [z, f(z, x1), f(f(z, x1), x2), ...]
-public func scanl<B, T>(start : B, list : [T], r : (B, T) -> B) -> [B] {
-    if list.isEmpty {
-        return [start]
-    }
-    var arr = [B]()
-    arr.append(start)
-    var reduced = start
-    for x in list {
-        reduced = r(reduced, x)
-        arr.append(reduced)
-    }
-    return Array(arr)
-}
-
 /// Returns the first element in a list matching a given predicate.  If no such element exists, this
 /// function returns nil.
 public func find<T>(list : [T], f : (T -> Bool)) -> T? {
@@ -220,8 +198,6 @@ public func intersperse<T>(item : T, list : [T]) -> [T] {
     }
 }
 
-
-
 /// Safely indexes into an array by converting out of bounds errors to nils.
 public func indexArray<A>(xs : [A], i : Int) -> A? {
     if i < xs.count && i >= 0 {
@@ -243,7 +219,6 @@ public func all<A>(list : [A], f : (A -> Bool)) -> Bool {
     return and(list.map(f))
 }
 
-
 ///Map a function over a list and concatenate the results.
 public func concatMap<A,B>(list: [A], f: A -> [B]) -> [B] {
     return list.reduce([]) { (start, l) -> [B] in
@@ -251,12 +226,10 @@ public func concatMap<A,B>(list: [A], f: A -> [B]) -> [B] {
     }
 }
 
-
 /// Inserts a list in between the elements of a 2-dimensional array and concatenates the result.
 public func intercalate<A>(list : [A], nested : [[A]]) -> [A] {
     return concat(intersperse(list, list: nested))
 }
-
 
 /// Returns a tuple with the first elements that satisfy a predicate until that predicate returns
 /// false first, and a the rest of the elements second.
@@ -291,7 +264,6 @@ public func groupBy<A>(list : [A], p : A -> A -> Bool) -> [[A]] {
         return cons(l, rhs: groupBy(zs, p: p))
     }
 }
-
 
 /// Takes a list and groups its arguments into sublists of duplicate elements found next to each
 /// other.
