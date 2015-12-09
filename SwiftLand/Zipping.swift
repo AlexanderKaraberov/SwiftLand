@@ -42,7 +42,6 @@ public func zipWith3<A,B,C,D>(fst:[A], scd:[B], thrd:[C], f:((A, B, C) -> D)) ->
 }
 
 /// Unzips an array of tuples into a tuple of arrays.
-/// Given array of pairs, return pair ofarrays
 public func unzip<T, U>(array: [(T, U)]) -> ([T], [U]) {
     
     var t = Array<T>()
