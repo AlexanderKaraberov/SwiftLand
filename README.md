@@ -15,3 +15,4 @@ This library will selectively include some code from beautiful https://github.co
 #Adding library using Carthage:
 
 In your [Cartfile](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) specify `github  "AlexanderKaraberov/SwiftLand"`
+<p>And then write: `import SwiftLand`
