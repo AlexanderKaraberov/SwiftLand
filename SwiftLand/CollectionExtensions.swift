@@ -9,21 +9,9 @@
 import Foundation
 
 
-extension RangeReplaceableCollectionType where Generator.Element : Equatable {
-    
-    ///Destructively removes Equatable element from the collection
-    mutating func removeObject(object : Generator.Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
-    }
-    
-}
-
-///Implementation of uniq function for Hashable instatnces
 extension RangeReplaceableCollectionType where Self.Generator.Element: Hashable {
     
-    /// @return the unique elements of the collection
+    /// Returns collection containing only unique elements of the receiver
     func uniq() -> Self {
         var seen: Set<Self.Generator.Element> = Set()
         
@@ -37,27 +25,17 @@ extension RangeReplaceableCollectionType where Self.Generator.Element: Hashable 
     }
 }
 
-extension Array {
-    
-    ///Maps a function over an array that takes pairs of (index, element) to a different element.
-    ///See here: http://stackoverflow.com/questions/28012205/map-or-reduce-with-index-in-swift/33397337#33397337
-    ///Also here: http://stackoverflow.com/questions/16191824/index-of-element-in-list-in-haskell
-    public func mapWithIndex<T> (f: (Int, Element) -> T) -> [T] {
-        return zip((self.startIndex ..< self.endIndex), self).map(f)
-    }
+/// Inserts a list in between the elements of a 2-dimensional array and concatenates the result.
+public func intercalate<A>(list : [A], nested : [[A]]) -> [A] {
+    return concat(nested.intersperse(list))
 }
 
-///Alternative global uniq function
-func uniq<S : SequenceType, T : Hashable where S.Generator.Element == T>(source: S) -> [T] {
-    
-    var buffer = [T]()
-    var added = Set<T>()
-    for element in source {
-        if !added.contains(element) {
-            buffer.append(element)
-            added.insert(element)
-        }
-    }
-    return buffer
-    
+/// Concatenate a list of lists.
+public func concat<T>(list : [[T]]) -> [T] {
+    return list.reduce([], combine: +)
+}
+
+/// Returns the result of concatenating the values in the left and right arrays together.
+public func concatenate<T>(lhs: [T])(_ rhs : [T]) -> [T] {
+    return lhs + rhs
 }
