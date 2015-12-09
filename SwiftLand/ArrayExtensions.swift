@@ -30,8 +30,8 @@ extension Array {
         return .Cons(hd, tl)
     }
     
-    /// Checks if a list is empty. If it is, it returns true, otherwise it returns false
-    public func null<A>(l: [A]) -> Bool {
+    /// Checks if array is empty. If it is, it returns true, otherwise it returns false
+    public var null : Bool {
         switch self.match {
         case .Nil:
             return true
@@ -41,6 +41,7 @@ extension Array {
     }
     
     /// Returns the tail of the list, or None if the list is empty.
+    ///To take head of the array use array.first.
     public var tail : Optional<[Element]> {
         switch self.match {
         case .Nil:
@@ -48,20 +49,6 @@ extension Array {
         case .Cons(_, let xs):
             return .Some(xs)
         }
-    }
-    
-    /// Returns an array of all initial segments of the receiver, shortest first
-    public var inits : [[Element]] {
-        return self.reduce([[Element]](), combine: { xss, x in
-            return xss.map { $0.cons(x) }.cons([])
-        })
-    }
-    
-    /// Returns an array of all final segments of the receiver, longest first
-    public var tails : [[Element]] {
-        return self.reduce([[Element]](), combine: { x, y in
-            return [x.first!.cons(y)] + x
-        })
     }
     
     /// Takes, at most, a specified number of elements from a list and returns that sublist.
