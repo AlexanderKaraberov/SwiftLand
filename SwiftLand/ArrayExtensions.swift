@@ -207,18 +207,6 @@ public func indexArray<A>(xs : [A], i : Int) -> A? {
     }
 }
 
-/// Maps a predicate over a list.  For the result to be true, the predicate must be satisfied at
-/// least once by an element of the list.
-public func any<A>(list : [A], f : (A -> Bool)) -> Bool {
-    return or(list.map(f))
-}
-
-/// Maps a predicate over a list.  For the result to be true, the predicate must be satisfied by
-/// all elemenets of the list.
-public func all<A>(list : [A], f : (A -> Bool)) -> Bool {
-    return and(list.map(f))
-}
-
 ///Map a function over a list and concatenate the results.
 public func concatMap<A,B>(list: [A], f: A -> [B]) -> [B] {
     return list.reduce([]) { (start, l) -> [B] in
