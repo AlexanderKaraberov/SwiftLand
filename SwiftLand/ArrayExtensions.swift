@@ -40,6 +40,17 @@ extension Array {
         }
     }
     
+    ///Decomposes an array into a tuple containing the head element, and the rest of the array (tail).
+    ///If the array is empty, it returns nil
+    public var decompose : (head: Element, tail: [Element])? {
+        switch self.match {
+        case .Nil:
+            return .None
+        case .Cons(_, _):
+            return (self.first!, self.tail ?? [])
+        }
+    }
+    
     /// Returns the tail of the list, or None if the list is empty.
     ///To take head of the array use array.first.
     public var tail : Optional<[Element]> {
@@ -280,15 +291,52 @@ extension Array {
     }
 }
 
+///Mutable extensions for destructive array updates
 extension Array where Element : Equatable {
     
+    ///Destructively removes elements satisfying predicate from the collection
+    public mutating func removeBy(p: Element -> Bool) {
+        self.removeObjectsInArray(self.filter {(element) -> Bool in p(element) })
+    }
+    
     ///Destructively removes element from the collection
-    mutating func removeObject(object : Generator.Element) {
+    public mutating func removeObject(object: Element) {
         if let index = self.indexOf(object) {
+        
             self.removeAtIndex(index)
         }
     }
+    
+    ///Destructively removes elements specified in the array parameter from current array
+    public mutating func removeObjectsInArray(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
+        }
+    }
 }
+
+
+extension Array where Element : IntegerType {
+    
+    public func sum() -> Element {
+        switch self.match {
+        case .Nil:
+            return 0
+        case .Cons(_, _):
+            return self.reduce(0, combine: +)
+        }
+    }
+    
+    public func product() -> Element {
+        switch self.match {
+        case .Nil:
+            return 1
+        case .Cons(_, _):
+            return self.reduce(1, combine: *)
+        }
+    }
+}
+
 
 extension Array where Element : BooleanType {
     /// Returns the conjunction of a list of Booleans.
