@@ -39,4 +39,12 @@ class SequenceTypeExtensionsTestCase: XCTestCase {
         }), "Should be true")
     }
     
+    func testArrayFromRange() {
+    
+        let withArray: [Int] = (2...9).toArray()
+        
+        XCTAssert(withArray == [2, 3, 4, 5, 6, 7, 8, 9], "Should be equal")
+        XCTAssert(withArray != [2, 3, 4, 6, 7, 8, 9], "Should be equal")
+    }
+    
 }

@@ -8,11 +8,10 @@
 
 import Foundation
 
-
-extension RangeReplaceableCollectionType where Self.Generator.Element: Hashable {
+public extension RangeReplaceableCollectionType where Self.Generator.Element: Hashable {
     
     /// Returns collection containing only unique elements of the receiver
-    func uniq() -> Self {
+    public func uniq() -> Self {
         var seen: Set<Self.Generator.Element> = Set()
         
         return reduce(Self()) { result, item in
@@ -24,6 +23,25 @@ extension RangeReplaceableCollectionType where Self.Generator.Element: Hashable 
         }
     }
 }
+
+
+public protocol ArrayRepresentable {
+   
+    typealias ArrayType
+    
+    ///Allows to create an array from the given range
+    func toArray() -> [ArrayType]
+}
+
+
+extension Range : ArrayRepresentable {
+    
+    ///Allows to create an array from the given range (lower...higher)
+   public func toArray() -> [Element] {
+        return [Element](self)
+    }
+}
+
 
 /// Inserts a list in between the elements of a 2-dimensional array and concatenates the result.
 public func intercalate<A>(list : [A], nested : [[A]]) -> [A] {

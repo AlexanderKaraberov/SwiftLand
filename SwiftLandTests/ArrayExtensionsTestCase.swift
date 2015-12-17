@@ -63,6 +63,5 @@ class ArrayExtensionsTestCase: XCTestCase {
         XCTAssert(withArray1.decompose! == (2, [34,1,2,3]), "Should be true")
         XCTAssert(withArray2.decompose == nil, "Should be true")
         XCTAssert(withArray3.decompose! == (1, []), "Should be true")
-    }
-    
+    }    
 }
