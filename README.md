@@ -1,14 +1,17 @@
 # SwiftLand µframework v0.0.9
 
-This small library contains useful higher order functions to simplify general Swift development in "functional" style. It will contain only general-purpose functions without abstract pattens and category theory concepts. The main idea of SwiftLand is to support idea of [functional in the small, OOP in the large](http://www.johndcook.com/blog/2009/03/23/functional-in-the-small-oo-in-the-large/), and not to pretend that Swift is a purely functional language, because it is [not](https://en.wikipedia.org/wiki/Referential_transparency), so there are no `Monads`, `Monad Transformers`, `Arrows`, `Comonads` and so on in it, but only small standalone functions. Also you should read [this paper](https://queue.acm.org/detail.cfm?id=2611829).
-This library will selectively include some code from beautiful https://github.com/typelift frameworks, but only practical functions. Also `SwiftLand` tries to reimplement functions similar to ones found in Haskell Data/Prelude libraries in idiomatic Swift way. In addition there will be some general helpers for everyday tasks. Each function has detailed comments, which you can use as docs. Swift standard library already contains a lot of higher order functions for high level functional data processing. The intent of this libary is just to add more.
+This small library contains useful higher-order functions (functionals) to simplify general Swift development. This can be considered as "functional" sugar. Library will contain only general-purpose functions without abstract functional pattens and category theory concepts. The main idea of SwiftLand is to support idea of [functional in the small, OOP in the large](http://www.johndcook.com/blog/2009/03/23/functional-in-the-small-oo-in-the-large/), and not to pretend that Swift is a purely functional language, because it is [not](https://en.wikipedia.org/wiki/Referential_transparency), so there are no `Monads`, `Monad Transformers`, `Arrows`, `Comonads` and so on in it, but only small standalone functions.
+This library will selectively include some code from beautiful https://github.com/typelift frameworks, but only practical functions. This is not a functional programming library, because FP is not really about higher-order functions like `map` or `reduce`, this library is more like a DSL for data processing which encourages you to apply functional paradigm in everyday programming tasks. `SwiftLand` also tries to reimplement functions similar to ones found in Haskell Data/Prelude libraries. In addition there will be some general helpers for everyday tasks. Each function has detailed comments, which you can use as docs. Swift standard library already contains a lot of higher order functions and the intent of this libary is just to add more.
 <p> Currently it has:
-* `Foldr` or right fold (catamorphism), because Swift currently has only fold left (`reduce`).
-* Special folds: `any`, `all`, `or`, `and`.
-* `mapWithIndex`
-* General purpose list functions: `intercalate`, `null`, `tail`/`head`/`drop`, `takeWhile`, `dropWhile`, cons lists, `concat`, `intersperse`, `span`, `concatMap`, `groupBy`, `splitAt`, `find`, `remove`, `uniq`, `scanl`.
+* Catamorphisms: `foldr` (right fold), `foldl` (left fold), Swift currently has only [reduce](https://developer.apple.com/library/ios/documentation/Swift/Reference/Swift_SequenceType_Protocol/index.html#//apple_ref/swift/intfm/SequenceType/s:FeRq_Ss12SequenceType_SsS_6reduceu__Rq_S__Fq_FzTqd__7combineFzTqd__qqq_S_9GeneratorSs13GeneratorType7Element_qd___qd__), which is a restricted version of fold, because `reduce` always returns the same type as is found in the list/array and fold hasn't this limitation.
+* Special folds: `any`, `all`, `or`, `and`, `sum`, `product`.
+* `mapWithIndex`, `until`
+* Helpers for 2-tupples (pairs): `swap`, comparison
+* `curry`, and its inverse `uncurry`
+* General purpose list processing functions: `intercalate`, `null`, `tail`/`head`/`drop`, `takeWhile`, `dropWhile`, `concat`, `intersperse`, `span`, `concatMap`, `groupBy`, `splitAt`, `find`, `remove`, `uniq`, `scanl`.
+* Cons lists with list pattern matching
 * Zipping/unzipping lists: `zip3`, `zipWith`, `unzip`. (Swift standard library already has a usual [zip](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_StandardLibrary_Functions/index.html#//apple_ref/swift/func/s:FSs3zipu0_Rq_Ss12SequenceTypeq0_S__FTq_q0__GVSs12Zip2Sequenceq_q0__) function)
-* Combinators (`flip`,`const`, `fix` or [Y combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator))
+* Combinators:  C-combinator (`flip`), K-combinator (`const`), Y-combinator: (`fix`), I-combinator (`id`), Psi-combinator (`on`), S-combinator (`substitute`) 
 * Utils for dates, images, colors.
 * String extensions and higher order functions
 
