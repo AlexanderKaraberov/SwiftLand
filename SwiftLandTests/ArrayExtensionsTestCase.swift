@@ -55,13 +55,25 @@ class ArrayExtensionsTestCase: XCTestCase {
     }
     
     func testDecompose() {
-    
+        
         let withArray1: [Int] = [2,34,1,2,3]
         let withArray2: [Int] = []
         let withArray3: [Int] = [1]
-    
+        
         XCTAssert(withArray1.decompose! == (2, [34,1,2,3]), "Should be true")
         XCTAssert(withArray2.decompose == nil, "Should be true")
         XCTAssert(withArray3.decompose! == (1, []), "Should be true")
-    }    
+    }
+    
+    func testUnfoldr() {
+        
+        let array = [3, 4, 5, 6, 7, 8, 9]
+        
+        let generatedArray = unfoldr {
+            (seed: Int) -> Optional<(Int, Int)> in seed <= 9 ? .Some(seed, seed + 1) : .None }(3)
+        
+        XCTAssert(array == generatedArray, "Should be true")
+    }
+    
+    
 }

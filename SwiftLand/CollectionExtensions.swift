@@ -57,3 +57,25 @@ public func concat<T>(list : [[T]]) -> [T] {
 public func concatenate<T>(lhs: [T])(_ rhs : [T]) -> [T] {
     return lhs + rhs
 }
+
+/// unfoldr is the dual to foldr.  Where foldr reduces an array given a function and an initial
+/// value, unfoldr uses the initial value and the function to iteratively build an array.  If array
+/// building should continue the function should return .Some(x, y), else it should return .None.
+/// An unfold on arrays would build a (potentially infinite) array from a seed value.
+/// Unfoldr is an anamorphism. Formally, anamorphisms are generic functions that can corecursively
+/// construct a result of a certain type and which is parameterized by functions that determine
+/// the next single step of the construction.
+public func unfoldr<A, B>(f : B -> Optional<(A, B)>) -> B -> [A] {
+    return { b in
+        switch f(b) {
+       
+        case .Some(let (a, b2)):
+            var array = unfoldr(f)(b2)
+            array.insert(a, atIndex: 0)
+            return array
+        
+        case .None:
+            return []
+        }
+    }
+}
