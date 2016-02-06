@@ -4,6 +4,7 @@ This small library contains useful higher-order functions (functionals) to simpl
 This library will selectively include some code from beautiful https://github.com/typelift frameworks, but only practical functions. `SwiftLand` also tries to reimplement functions similar to ones found in Haskell Data/Prelude libraries. In addition there will be some general helpers for everyday tasks. Each function has detailed comments, which you can use as docs. Swift standard library already contains a lot of higher order functions and the intent of this libary is just to add more.
 <p>  *Currently* it has:
 * Catamorphisms: `foldr` (right fold), `foldl` (left fold), Swift currently has only [reduce](https://developer.apple.com/library/ios/documentation/Swift/Reference/Swift_SequenceType_Protocol/index.html#//apple_ref/swift/intfm/SequenceType/s:FeRq_Ss12SequenceType_SsS_6reduceu__Rq_S__Fq_FzTqd__7combineFzTqd__qqq_S_9GeneratorSs13GeneratorType7Element_qd___qd__) function, which is a restricted version of `fold` operation, because `reduce` always returns the same type as is found in the array and `fold` hasn't this limitation.
+* Anamorphism: `unfoldr`.
 * Special folds: `any`, `all`, `or`, `and`, `sum`, `product`.
 * `mapWithIndex`, `until`
 * Helpers for 2-tuples (pairs): `swap`, tuple comparison, because Swift currently [doesn't](https://github.com/apple/swift-evolution/blob/master/proposals/0015-tuple-comparison-operators.md) have this.
