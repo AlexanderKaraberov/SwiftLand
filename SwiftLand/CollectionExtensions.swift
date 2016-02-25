@@ -79,3 +79,33 @@ public func unfoldr<A, B>(f : B -> Optional<(A, B)>) -> B -> [A] {
         }
     }
 }
+
+
+/// Hylomorphism
+/// Usage: func fac(n: Int) -> Int {
+/// return hylo(1, f: *, g: {n in (n, n - 1)}, p: {$0 == 0}, t: n) }
+public func hylo<T,U,V>(v: V, f: (U, V) -> V, g: T -> (U, T), p: T -> Bool, t: T) -> V {
+    if p(t) {
+        return v
+    } else {
+        let (u, t_) = g(t)
+        return f(u, hylo(v, f: f, g: g, p: p, t: t_))
+    }
+}
+
+
+/** Paramorphism
+   
+    Usage:
+ 
+     func tails<T>(array: [T]) -> [[T]] {
+         return paraList([[T]](), array: array){x, xs, tls in return [xs] + tls } }
+**/
+public func para<T, U>(b: U, array: [T], f: (T, [T], U) -> U) -> U {
+    if array.isEmpty {
+        return b
+    } else {
+        return f(array.first!, array, para(b, array: Array(array[1..<array.count]), f: f))
+    }
+}
+
