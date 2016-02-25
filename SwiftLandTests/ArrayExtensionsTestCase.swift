@@ -64,16 +64,4 @@ class ArrayExtensionsTestCase: XCTestCase {
         XCTAssert(withArray2.decompose == nil, "Should be true")
         XCTAssert(withArray3.decompose! == (1, []), "Should be true")
     }
-    
-    func testUnfoldr() {
-        
-        let array = [3, 4, 5, 6, 7, 8, 9]
-        
-        let generatedArray = unfoldr {
-            (seed: Int) -> Optional<(Int, Int)> in seed <= 9 ? .Some(seed, seed + 1) : .None }(3)
-        
-        XCTAssert(array == generatedArray, "Should be true")
-    }
-    
-    
 }

@@ -21,4 +21,14 @@ extension SequenceType {
     public func all(f : (Generator.Element -> Bool)) -> Bool {
         return self.map(f).and
     }
+    
+    public func foldRight<U>(initial: U, combine: (Self.Generator.Element, U) -> U) -> U {
+        var result = initial
+        let array = self.reverse()
+        for element in array {
+            result = combine(element, result)
+        }
+        return result
+    }
+    
 }

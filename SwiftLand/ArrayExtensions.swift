@@ -133,12 +133,19 @@ extension Array {
     }
     
     /// Folds a reducing function over an array from right to left.
-    public func foldRight<U>(z : U, f : (Element, U) -> U) -> U {
-        var res = z
-        for x in self {
-            res = f(x, res)
+    public func foldRight<B>(k : Element -> B -> B, _ i : B) -> B {
+        switch self.match {
+        case .Nil:
+            return i
+        case .Cons(let x, let xs):
+            return k(x)(xs.foldRight(k, i))
         }
-        return res
+    }
+    
+    /// Counts how many matches of a predicate occur in the foldable array
+    public func filterLength(predicate: Element -> Bool) -> Int {
+        
+        return reduce(0, combine: {(a, b) -> Int in (predicate(b) ? 1 : 0) + a })
     }
     
     /// Takes a binary function, an initial value, and a list and scans the function across each
