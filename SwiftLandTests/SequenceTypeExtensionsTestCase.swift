@@ -40,11 +40,19 @@ class SequenceTypeExtensionsTestCase: XCTestCase {
     }
     
     func testArrayFromRange() {
-    
+        
         let withArray: [Int] = (2...9).toArray()
         
         XCTAssert(withArray == [2, 3, 4, 5, 6, 7, 8, 9], "Should be equal")
         XCTAssert(withArray != [2, 3, 4, 6, 7, 8, 9], "Should be equal")
     }
     
+    func testUnfoldr() {
+        
+        let array = [3, 4, 5, 6, 7, 8, 9]
+        let generatedArray = unfoldr {
+            (seed: Int) -> Optional<(Int, Int)> in seed <= 9 ? .Some(seed, seed + 1) : .None } (3)
+        
+        XCTAssert(array == generatedArray, "Should be true")
+    }
 }
