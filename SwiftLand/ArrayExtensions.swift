@@ -132,6 +132,12 @@ extension Array {
         return res
     }
     
+    ///The same as standard Swift reduce function. Added just for consistency with another catamorphisms
+    public func foldLeft<B>(combine : B -> Element -> B, _ i : B) -> B {
+        return self.reduce(i, combine: uncurry(combine))
+    }
+    
+    
     /// Folds a reducing function over an array from right to left.
     public func foldRight<B>(k : Element -> B -> B, _ i : B) -> B {
         switch self.match {
@@ -141,6 +147,41 @@ extension Array {
             return k(x)(xs.foldRight(k, i))
         }
     }
+    
+    
+    /// Takes a binary function and an array of values, then folds the function over the array from left
+    /// to right.  It takes its initial value from the head of the array.
+    ///
+    /// Because this function draws its initial value from the head of an array, it is non-total with
+    /// respect to the empty array.
+    public func foldLeft1(f: Element -> Element -> Element) -> Element {
+        switch self.match {
+        case .Cons(let x, let xs) where xs.count == 0:
+            return x
+        case .Cons(let x, let xs):
+            return xs.reduce(x, combine: uncurry(f))
+        case .Nil:
+            fatalError("Cannot invoke foldlLeft1 with an empty array")
+        }
+    }
+    
+    
+    /// Takes a binary function and an array of values, then folds the function over the array from
+    /// right to left.  It takes its initial value from the head of the array.
+    ///
+    /// Because this function draws its initial value from the head of an array, it is non-total with
+    /// respect to the empty array.
+    public func foldRight1(f: Element -> Element -> Element) -> Element {
+        switch self.match {
+        case .Cons(let x, let xs) where xs.count == 0:
+            return x
+        case .Cons(let x, let xs):
+            return f(x)(xs.foldRight(f,x))
+        case .Nil:
+            fatalError("Cannot invoke foldlRight1 with an empty array")
+        }
+    }
+    
     
     /// Counts how many matches of a predicate occur in the foldable array
     public func filterLength(predicate: Element -> Bool) -> Int {

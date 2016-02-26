@@ -54,6 +54,7 @@ class ArrayExtensionsTestCase: XCTestCase {
         XCTAssert(withArray3 == ["aabc", "dddcda"], "Should be true")
     }
     
+    
     func testDecompose() {
         
         let withArray1: [Int] = [2,34,1,2,3]
@@ -63,5 +64,14 @@ class ArrayExtensionsTestCase: XCTestCase {
         XCTAssert(withArray1.decompose! == (2, [34,1,2,3]), "Should be true")
         XCTAssert(withArray2.decompose == nil, "Should be true")
         XCTAssert(withArray3.decompose! == (1, []), "Should be true")
+    }
+    
+    
+    func testFoldLeft1() {
+    
+        let withArray: [String] = ["a", "b", "c", "d", "e", "f"]
+        
+        XCTAssert(withArray.foldLeft1(curry(+)) == "abcdef", "Should be true")
+    
     }
 }
