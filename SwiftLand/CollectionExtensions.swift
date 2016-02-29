@@ -80,7 +80,7 @@ public func unfoldr<A, B>(f : B -> Optional<(A, B)>) -> B -> [A] {
     }
 }
 
-/// The same as unfoldr, implemented in imperative style underhood
+/// The same as unfoldr, implemented in a different way.
 func unfold<T, U>(p: T -> Bool, h: T -> U, t: T -> T, a: T) -> [U] {
     if p(a) {
         return [U]()
