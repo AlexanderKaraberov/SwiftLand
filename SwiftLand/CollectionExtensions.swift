@@ -80,6 +80,15 @@ public func unfoldr<A, B>(f : B -> Optional<(A, B)>) -> B -> [A] {
     }
 }
 
+/// The same as unfoldr, implemented in imperative style underhood
+func unfold<T, U>(p: T -> Bool, h: T -> U, t: T -> T, a: T) -> [U] {
+    if p(a) {
+        return [U]()
+    } else {
+        return [h(a)] + unfold(p, h: h, t: t, a: t(a))
+    }
+}
+
 
 /// Hylomorphism
 /// Usage: func fac(n: Int) -> Int {
