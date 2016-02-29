@@ -1,4 +1,6 @@
 Recursion patterns can be seen as high-order functions that encapsulate typical forms of recursion.
+Whole zoo of all the patterns can be found here
+http://comonad.com/reader/2009/recursion-schemes/
 <p>More complex and exotic recursion patterns have been discovered later, such as accumulations, apomorphisms,
 zygomorphisms, histomorphisms, futumorphisms, dynamorphisms or chronomorphisms.
 Hylomorphisms are recursive functions whose invocation tree (i.e., the graphical
@@ -28,22 +30,31 @@ origami (from oru, folding, + kami, paper) the Japanese art of paper folding) ov
 hylomorphism.
 In the examples below we will use lists to show what hylomorphisms can achieve.
 The function that follows is a typical example of a catamorphism:
-def foldL[ë,ì](f: (ë, ì) => ì)(e: ì)(l: List[ë]): ì =
+
+```scala
+def foldL[A,B](f: (A, B) => B)(e: B)(l: List[A]): B =
 l match {
 case Nil => e
 case x::xs => f(x, foldL(f)(e)(xs))
 }
+```
+
 Note that although we use lists this definition works for any other isomorphic data
 structure. Also, this function does exactly what the :/ (foldr) operator does. The
 next function is a typical example of an anomorphism:
 
+```scala
 def unfoldLa[A,B](f: B => Option[Tuple2[A,B]])
 (u: B):List[A] =
 f(u) match {  
 case None => Nil
 case Some((x,v)) => x::(unfoldLa(f)(v))
 }
+```
+
 This function can also be written as follows:
+
+```scala
 def unfoldL[A,B](p: B => Boolean)
 (f: B => A)(g: B => B)
 (b: B):List[A] =
@@ -51,13 +62,18 @@ if (p(b))
 Nil
 else
 (f(b))::(unfoldL(p)(f)(g)(g(b)))
+```
 
 As noted above, if we compose the fold and the unfold functions,we get a hylomorphism.
 A simple example of a hylomorphism is given by a function that computes
 the factorial of some integer n:
+
+```scala
 def fact(n: Int) =
 foldL( (_:Int) * (_:Int) )( 1 )
 ( unfoldL( (_:Int) == 0 )( id )( pred )( n ))
+```
+
 In a real source file the second and the third linesmust appear on the same physical
 line or else the language processor will “find” errors. Also, function id returns
 its argument and function pred returns its argument, if it is equal to zero, or its
