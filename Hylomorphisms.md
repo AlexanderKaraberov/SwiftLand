@@ -1,9 +1,5 @@
-Recursion patterns can be seen as high-order functions that encapsulate typical forms of recursion.
-Whole zoo of all the patterns can be found here
-http://comonad.com/reader/2009/recursion-schemes/
-<p>More complex and exotic recursion patterns have been discovered later, such as accumulations, apomorphisms,
-zygomorphisms, histomorphisms, futumorphisms, dynamorphisms or chronomorphisms.
-Hylomorphisms are recursive functions whose invocation tree (i.e., the graphical
+Recursion patterns can be seen as high-order functions that encapsulate typical forms of recursion. Base such patterns are: catamorphisms (folds), anamorphisms (unfolds), paramorhisms (`foldr` with original structure passed as parameter) and **hylomorphisms** (unfold + fold). More complex and exotic recursion patterns have been discovered later, such as accumulations, histomorphisms (folds that may use the history of intermediate results, allows us to access all previous values, not just the most recent one), apomorphisms, zygomorphisms, futumorphisms, dynamorphisms, prepromorphisms or chronomorphisms and their combinations. The whole zoo of all the patterns can be found [here: ](http://comonad.com/reader/2009/recursion-schemes/)
+<p> _Hylomorphisms_ are recursive functions whose invocation tree (i.e., the graphical
 representation of the various invocations involved in a particular function invocation)
 is isomorphic to that of a function that processes lists. Roughly, two entities (for
 example, collections of things, invocation trees, etc.) are isomorphic when there is a
