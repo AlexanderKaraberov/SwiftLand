@@ -25,6 +25,25 @@ public extension RangeReplaceableCollectionType where Self.Generator.Element: Ha
 }
 
 
+public extension Dictionary {
+    
+    /// If the specified key is not already associated with a value
+    /// attempts to compute its value using the given mapping function, enters it into this dictionary
+    // and returns its value, otherwise returns value associated with the key
+    public mutating func computeIfAbsent(k: Key, f: Key -> Value) -> Value {
+        
+        if let value = self[k] {
+            return value
+        }
+            
+        else {
+            self[k] = f(k)
+            return self[k]!
+        }
+    }
+}
+
+
 public protocol ArrayRepresentable {
    
     typealias ArrayType

@@ -16,7 +16,8 @@ This library will selectively include some code from beautiful https://github.co
 * Cons lists with list pattern matching
 * Zipping/unzipping lists: `zip3`, `zipWith`, `unzip`. (Swift standard library already has a usual [zip](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_StandardLibrary_Functions/index.html#//apple_ref/swift/func/s:FSs3zipu0_Rq_Ss12SequenceTypeq0_S__FTq_q0__GVSs12Zip2Sequenceq_q0__) function)
 * [Combinators](https://wiki.haskell.org/Combinator):  C-combinator (`flip`), K-combinator (`const`), Y-combinator: (`fix`), I-combinator (`id`), Psi-combinator (`on`), S-combinator (`substitute`) 
-* Utils for dates, images, colors.
+* Utils for dates, images, colors, `dictionaryOfVariableBindings`, validation
+* Collection extensions: `ArrayRepresentable` for ranges, `computeIfAbsent`.
 * String extensions and higher order functions
 
 #Adding library using [Carthage](https://github.com/Carthage/Carthage):
