@@ -51,6 +51,17 @@ extension Array {
         }
     }
     
+    ///Repeatedly applies a function while the condition holds
+    public func iterateWhile<A>(condition: A -> Bool,
+                      initialValue: A,
+                      next: A -> A?) -> A {
+        
+        if let x = next(initialValue) where condition(x) {
+            return iterateWhile(condition, initialValue: x, next: next)
+        }
+        return initialValue
+    }
+    
     /// Returns the tail of the list, or None if the list is empty.
     ///To take head of the array use array.first.
     public var tail : Optional<[Element]> {
