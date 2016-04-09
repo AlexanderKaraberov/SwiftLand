@@ -12,7 +12,7 @@ This library will selectively include some code from beautiful https://github.co
 * `mapWithIndex`, `until`
 * Helpers for 2-tuples (pairs): `swap`, tuple comparison, because Swift currently [doesn't](https://github.com/apple/swift-evolution/blob/master/proposals/0015-tuple-comparison-operators.md) have this.
 * `curry`, and its inverse `uncurry` for different number of arguments.
-* General purpose list processing functions: `filterLength`, `intercalate`, `null`, `tail`/`head`/`drop`, `takeWhile`, `dropWhile`, `concat`, `intersperse`, `span`, `concatMap`, `groupBy`, `splitAt`, `find`, `remove`, `uniq`, `scanl`.
+* General purpose list processing functions: `filterLength`, `intercalate`, `null`, `tail`/`head`/`drop`, `takeWhile`, `dropWhile`, `concat`, `intersperse`, `span`, `concatMap`, `groupBy`, `splitAt`, `find`, `remove`, `uniq`, `scanl`, `iterateWhile`, `decompose`.
 * Cons lists with list pattern matching
 * Zipping/unzipping lists: `zip3`, `zipWith`, `unzip`. (Swift standard library already has a usual [zip](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_StandardLibrary_Functions/index.html#//apple_ref/swift/func/s:FSs3zipu0_Rq_Ss12SequenceTypeq0_S__FTq_q0__GVSs12Zip2Sequenceq_q0__) function)
 * [Combinators](https://wiki.haskell.org/Combinator):  C-combinator (`flip`), K-combinator (`const`), Y-combinator: (`fix`), I-combinator (`id`), Psi-combinator (`on`), S-combinator (`substitute`) 
