@@ -44,7 +44,7 @@ class ArrayExtensionsTestCase: XCTestCase {
         withArray1.removeObjectsInArray([1,3,5])
         
         withArray2.removeBy { (element) -> Bool in
-            element.rangeOfString("cd") != nil
+            element.range(of: "cd") != nil
         }
         
         withArray3.removeObject("adsd")
@@ -60,7 +60,7 @@ class ArrayExtensionsTestCase: XCTestCase {
         let withArray1: [Int] = [2,34,1,2,3]
         let withArray2: [Int] = []
         let withArray3: [Int] = [1]
-        
+      
         XCTAssert(withArray1.decompose! == (2, [34,1,2,3]), "Should be true")
         XCTAssert(withArray2.decompose == nil, "Should be true")
         XCTAssert(withArray3.decompose! == (1, []), "Should be true")

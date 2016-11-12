@@ -9,7 +9,7 @@
 import Foundation
 
 ///zip3 takes three lists and returns a list of triples, analogous to zip.
-public func zip3<A,B,C>(fst:[A], scd:[B], thrd:[C]) -> Array<(A,B,C)> {
+public func zip3<A,B,C>(_ fst:[A], scd:[B], thrd:[C]) -> Array<(A,B,C)> {
     let size = min(fst.count, scd.count, thrd.count)
     var newArr = Array<(A,B,C)>()
     for x in 0..<size {
@@ -21,7 +21,7 @@ public func zip3<A,B,C>(fst:[A], scd:[B], thrd:[C]) -> Array<(A,B,C)> {
 ///zipWith generalises zip by zipping with the function given as the first argument,
 ///instead of a tupling function.
 ///For example, zipWith (+) is applied to two lists to produce the list of corresponding sums.
-public func zipWith<A,B,C>(fst:[A], scd:[B], f:((A, B) -> C)) -> Array<C> {
+public func zipWith<A,B,C>(_ fst:[A], scd:[B], f:((A, B) -> C)) -> Array<C> {
     let size = min(fst.count, scd.count)
     var newArr = [C]()
     for x in 0..<size {
@@ -32,7 +32,7 @@ public func zipWith<A,B,C>(fst:[A], scd:[B], f:((A, B) -> C)) -> Array<C> {
 
 ///The zipWith3 function takes a function which combines three elements, as well as three lists
 ///and returns a list of their point-wise combination, analogous to zipWith.
-public func zipWith3<A,B,C,D>(fst:[A], scd:[B], thrd:[C], f:((A, B, C) -> D)) -> Array<D> {
+public func zipWith3<A,B,C,D>(_ fst:[A], scd:[B], thrd:[C], f:((A, B, C) -> D)) -> Array<D> {
     let size = min(fst.count, scd.count, thrd.count)
     var newArr = [D]()
     for x in 0..<size {
@@ -42,7 +42,7 @@ public func zipWith3<A,B,C,D>(fst:[A], scd:[B], thrd:[C], f:((A, B, C) -> D)) ->
 }
 
 /// Unzips an array of tuples into a tuple of arrays.
-public func unzip<T, U>(array: [(T, U)]) -> ([T], [U]) {
+public func unzip<T, U>(_ array: [(T, U)]) -> ([T], [U]) {
     
     var t = Array<T>()
     var u = Array<U>()
@@ -54,7 +54,7 @@ public func unzip<T, U>(array: [(T, U)]) -> ([T], [U]) {
 }
 
 /// Unzips an array of triples into a triple of arrays.
-public func unzip3<T, U, V>(array: [(T, U, V)]) -> ([T], [U], [V]) {
+public func unzip3<T, U, V>(_ array: [(T, U, V)]) -> ([T], [U], [V]) {
     
     var t = Array<T>()
     var u = Array<U>()

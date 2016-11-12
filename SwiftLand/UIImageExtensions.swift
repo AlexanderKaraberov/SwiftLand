@@ -24,16 +24,16 @@ extension UIImage {
         
         var cropSquare: CGRect
         
-        if self.imageOrientation == UIImageOrientation.Left || self.imageOrientation == UIImageOrientation.Right {
+        if self.imageOrientation == UIImageOrientation.left || self.imageOrientation == UIImageOrientation.right {
             
-            cropSquare = CGRectMake(yPosition, xPosition, edge, edge)
+            cropSquare = CGRect(x: yPosition, y: xPosition, width: edge, height: edge)
         } else {
             
-            cropSquare = CGRectMake(xPosition, yPosition, edge, edge)
+            cropSquare = CGRect(x: xPosition, y: yPosition, width: edge, height: edge)
         }
         
-        let imageRef: CGImageRef! = CGImageCreateWithImageInRect(self.CGImage, cropSquare)
-        return UIImage(CGImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
+        let imageRef: CGImage! = self.cgImage!.cropping(to: cropSquare)
+        return UIImage(cgImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
     }
     
     
@@ -42,7 +42,7 @@ extension UIImage {
         
         let compressionQuality: CGFloat = 1.0
         return UIImageJPEGRepresentation(self, compressionQuality).map { (data) -> String in
-            return data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+            return data.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         } ?? ""
     }
 }
