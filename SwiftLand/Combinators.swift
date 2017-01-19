@@ -8,6 +8,12 @@
 
 import Foundation
 
+// MARK: Combinators: Helpers
+
+struct RecursiveFunction<F> {
+    let o: (RecursiveFunction<F>) -> F
+}
+
 // MARK: Combinators: Functions
 
 /*~
@@ -70,8 +76,14 @@ public func substitute<R, A, B>(_ f : @escaping (R) -> (A) -> B) -> ( @escaping 
  *
  */
 
-public func fix<T, U>(_ f: @escaping ((T) -> U) -> (T) -> U) -> (T) -> U {
-    return { f(fix(f))($0) }
+public func fix<T, U>(f: @escaping ((T) -> U) -> (T) -> U) -> (T) -> U {
+    
+    let helperFunction = RecursiveFunction<(T) -> U> { w in
+        f {
+            w.o(w)($0)
+        }
+    }
+    return helperFunction.o(helperFunction)
 }
 
 
