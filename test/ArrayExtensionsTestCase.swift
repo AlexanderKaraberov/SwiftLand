@@ -16,7 +16,7 @@ class ArrayExtensionsTestCase: XCTestCase {
     func testArrayProduct() {
     
         let withArray: [Int] = [3,4,1,2,2,1,3]
-        
+    
         XCTAssert(withArray.product() == 144, "Should be equal")
     }
     
