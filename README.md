@@ -1,8 +1,10 @@
-# SwiftLand µframework v2.0
+# SwiftLand µframework 2.0.1
 
-This small library contains useful higher-order functions which can be used to simplify Swift development. This is not a functional programming library, because I believe there does not exist such a thing. We can define functional programming as *programming only with computable (possibly non-terminating) Scott-continuous functions which map set of inputs (domain) to the set of permissible outputs (codomain) with the property that each input is related to exactly one output*. In simple words functional programming is about side effects, how to deal with them, how to make them explicit and how to reason about the whole program mathematically. So if we stick to this definition it will become clear that one library can not guarantee these properties without support from the language and runtime and Swift by design is not a functional language.
+We can define functional programming as *programming only with computable Scott-continuous functions which map set of inputs (domain) to the set of permissible outputs (codomain) with the property that each input is related to exactly one output*.
+ 
+These functions can possibly be nonterminated but this is not true in languages with totality checking such as Idris. So in my opinion totality is not a mandatory requirement for functional programming. In simple words functional programming is about side effects, how to deal with them, how to make them explicit and how to reason about the whole program mathematically (as though we are solving an algebraic expression).
 
-<p>What SwiftLand does is add functions similar to ones found in Haskell Data/Prelude libraries to reduce code boilerplate. Each function has detailed comments, which can be used as documentation.</p>
+<p>SwiftLand is a small library which contains useful higher-order functions which can be used to simplify Swift development and to make functional programming a little bit simpler in Swift. There is nothing super new here. Similar functions can be found in Haskell, Idris, PureScript standard libraries. Each function has detailed comments, which can be used as documentation.</p>
 
 SwiftLand contains:
 * Catamorphism: `foldRight` (fold from the right). Swift currently has only [reduce](https://developer.apple.com/library/ios/documentation/Swift/Reference/Swift_SequenceType_Protocol/index.html#//apple_ref/swift/intfm/SequenceType/s:FeRq_Ss12SequenceType_SsS_6reduceu__Rq_S__Fq_FzTqd__7combineFzTqd__qqq_S_9GeneratorSs13GeneratorType7Element_qd___qd__) function, which is equivalent to the `foldLeft` in classic FP literature.
