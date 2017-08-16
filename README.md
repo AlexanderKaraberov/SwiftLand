@@ -4,7 +4,7 @@ I couldn't find a rigorous and formal definition of functional programming. In l
  
 These functions can possibly be nonterminated but this is not true in languages with totality checking such as Idris. So in my opinion totality is not a mandatory requirement for functional programming. Also all computable functions might be continuos `dd` as stated [here](https://lukepalmer.wordpress.com/2008/08/11/all-functions-are-continuous-always/), [here](http://math.andrej.com/2006/03/27/sometimes-all-functions-are-continuous/) and [here](https://math.stackexchange.com/questions/1698088/are-all-computable-functions-continuous-or-vice-versa), but this fact is not commonly accepted and therefore I decided to omit statement about continuity from the definition of FP as well.
  
-<p>In simple words functional programming is about side effects, how to deal with them, how to make them explicit and how to reason about the whole program mathematically (as though we are solving an algebraic expression).</p>.
+<p>In simple words functional programming is about side effects, how to deal with them, how to make them explicit and how to reason about the whole program mathematically as though we are solving an algebraic expression.</p>
 
 <p>SwiftLand is a small library which contains useful higher-order functions. Library can be used to simplify Swift development and to make functional programming a little bit simpler in Swift. There is nothing super new here. Similar functions can be found in Haskell, Idris and PureScript standard libraries. Each function has detailed comments, which can be used as documentation.</p>
 
