@@ -1,7 +1,7 @@
 
 # SwiftLand µframework
 
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]() [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/AlexanderKaraberov/SwiftLand/releases/tag/2.0.1)
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://img.shields.io/travis/rust-lang/rust.svg) [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/AlexanderKaraberov/SwiftLand/releases/tag/2.0.1) [![Swift 4.0.x](https://img.shields.io/badge/swift-4.0.x-orange.svg)](https://img.shields.io/badge/swift-4.0.x-orange.svg)
 
 
 Functional programming is usually defined informally as a style of building the structure and elements of computer programs that treats computation as the evaluation of pure functions. These functions are not precisely mathematical functions because FP deals only with the subset of these functions which are computable. Ordinary mathematical functions, on the other hand, don't compute anything: output already exists and we only have to define a rule of correspondence between input and output. This rule is called a function. As aforesaid we can define functional programming (again informally) as *programming only with computable functions which map set of inputs (domain) to the set of permissible outputs (codomain) with the property that each input is related to exactly one output*.
