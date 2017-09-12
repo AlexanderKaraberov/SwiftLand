@@ -47,7 +47,7 @@ extension Array {
         case .nil:
             return .none
         case .cons(_, _):
-            return (self.first!, self.tail ?? [])
+            return (self.first!, Array(self.dropFirst()))
         }
     }
     
@@ -62,16 +62,6 @@ extension Array {
         return initialValue
     }
     
-    /// Returns the tail of the list, or None if the list is empty.
-    ///To take head of the array use array.first.
-    public var tail : Optional<[Element]> {
-        switch self.match {
-        case .nil:
-            return .none
-        case .cons(_, let xs):
-            return .some(xs)
-        }
-    }
    
     /// Returns an array consisting of the receiver with a given element appended to the front.
     public func cons(_ lhs : Element) -> [Element] {
@@ -86,7 +76,7 @@ extension Array {
         case .nil:
             return .none
         case let .cons(x, xs):
-            return .some(x, xs)
+            return .some((x,xs))
         }
     }
     
@@ -238,7 +228,7 @@ extension Array {
             return self
         } else {
             var array = Array([self[0]])
-            array += prependAll(item, array: self.tail!)
+            array += prependAll(item, array: Array(self.dropFirst()))
             return Array(array)
         }
     }
@@ -316,12 +306,12 @@ extension Array where Element : Equatable {
 }
 
 
-extension Array where Element : Integer {
+extension Array where Element : BinaryInteger {
     
     public func sum() -> Element {
         switch self.match {
         case .nil:
-            return 0
+            return 0 as! Element
         case .cons(_, _):
             return self.reduce(0, +)
         }
@@ -330,7 +320,7 @@ extension Array where Element : Integer {
     public func product() -> Element {
         switch self.match {
         case .nil:
-            return 1
+            return 1 as! Element
         case .cons(_, _):
             return self.reduce(1, *)
         }

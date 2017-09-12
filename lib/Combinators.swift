@@ -94,7 +94,7 @@ public func >>> <A, B, C> (f: @escaping (B) -> C, g: @escaping (A) -> B) -> (A) 
 
 ///W-combinator (elementary duplicator)
 public func duplicate <A, B> (f: @escaping (A) -> B, a: A) -> (A, A) -> B {
-    return { x in f(a) }
+    return { x, _ in f(a) }
 }
 
 
