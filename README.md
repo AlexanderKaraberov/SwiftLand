@@ -28,4 +28,4 @@ SwiftLand contains:
 
 # Adding library using [Carthage](https://github.com/Carthage/Carthage):
 
-In your [Cartfile](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) specify `github  "AlexanderKaraberov/SwiftLand"`
+In your [Cartfile](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) specify `github  "AlexanderKaraberov/SwiftLand"` and then run `carthage update`. You'll find the .framework in the `Carthage/Build/iOS` folder.
